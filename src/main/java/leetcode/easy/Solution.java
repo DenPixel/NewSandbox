@@ -49,9 +49,7 @@ public class Solution {
         String s = String.valueOf(x);
         StringBuilder rev = new StringBuilder(s).reverse();
 
-        if (s.contentEquals(rev)) return true;
-
-        return false;
+        return s.contentEquals(rev);
     }
 
     /*
@@ -59,7 +57,7 @@ public class Solution {
     For example, 2 is written as II in Roman numeral, just two one's added together.
     12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
      */
-    public int romanToInt(String s) {
+    public int romanToArab(String s) {
         int res = 0;
         int length = s.length();
         int[] ints = Arrays.stream(s.split(""))
@@ -68,7 +66,7 @@ public class Solution {
 
         for (int i = 0; i < length - 1; i++) {
             int el = ints[i];
-            res = (el < ints[i+1]) ? res - el : res + el;
+            res = (el < ints[i + 1]) ? res - el : res + el;
         }
 
         res += ints[length - 1];
@@ -76,22 +74,4 @@ public class Solution {
         return res;
     }
 
-    enum RomanNumbers {
-        I(1),
-        V(5),
-        X(10),
-        L(50),
-        C(100),
-        D(500),
-        M(1000);
-        private int arab;
-
-        RomanNumbers(int arab) {
-            this.arab = arab;
-        }
-
-        public int getArab() {
-            return arab;
-        }
-    }
 }
