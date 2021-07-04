@@ -16,7 +16,7 @@ import java.util.Set;
 @Service
 public class GameServiceImpl implements GameService {
     private final static String NAME_FILE_WITH_CITIES = "cities.txt";
-    private Set<String> cities;
+    private Set<String> cities = new HashSet<>();
     private String previousCity;
 
 
@@ -76,8 +76,8 @@ public class GameServiceImpl implements GameService {
 
         return cities.stream()
                 .filter(s -> s.charAt(0) == finalLastChar)
-                .findFirst()
-                .orElse("");
+                .findAny()
+                .orElseThrow(CitiesAreOverException::new);
     }
 
     private void validate(final String word) {
